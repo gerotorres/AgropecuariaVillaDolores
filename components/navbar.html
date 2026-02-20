@@ -1,0 +1,42 @@
+<!-- Header / Nav -->
+<nav id="navbar" class="fixed w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center text-white">
+    <a href="index.html" class="flex items-center gap-2 group cursor-pointer flex-shrink-0">
+        <img src="assets/icons/avd2.png" alt="Villa Dolores" class="h-16 md:h-16 w-auto transition-transform group-hover:scale-110 duration-300">
+    </a>
+
+    <div class="hidden md:flex gap-8 font-semibold text-sm items-center">
+        <a href="index.html#inicio" class="link-underline">Inicio</a>
+        <a href="index.html#nosotros" class="link-underline">Nosotros</a>
+        <a href="index.html#servicios" class="link-underline">Servicios</a>
+        <a href="index.html#productos" class="link-underline">Productos</a>
+        <a href="donlucas.html" class="link-underline text-accent font-bold border border-accent/50 rounded-full px-4 py-1 hover:bg-accent hover:text-white transition-all">Don Lucas</a>
+        <a href="index.html#contacto" class="link-underline">Contacto</a>
+    </div>
+
+    <button class="md:hidden p-2 hover:bg-white/10 rounded-full transition-colors flex-shrink-0" id="mobile-menu-btn">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 transform translate-x-full transition-transform duration-300 md:hidden" style="z-index: 100; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); backdrop-filter: blur(10px);">
+    <div class="flex flex-col h-full">
+        <div class="flex justify-between items-center p-6" style="border-bottom: 1px solid rgba(212, 165, 116, 0.2);">
+            <img src="assets/icons/avd2.png" alt="Villa Dolores" class="h-12 w-auto">
+            <button id="mobile-menu-close" class="p-2 rounded-full transition-all text-white" style="background: rgba(212, 165, 116, 0.1); border: 1px solid rgba(212, 165, 116, 0.3);" onmouseover="this.style.background='rgba(212, 165, 116, 0.2)'" onmouseout="this.style.background='rgba(212, 165, 116, 0.1)'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-2 p-6 text-white text-lg font-semibold">
+            <a href="index.html#inicio" class="mobile-menu-link py-4 px-4 rounded-lg transition-all" style="border-left: 3px solid transparent;" onmouseover="this.style.background='rgba(212, 165, 116, 0.1)'; this.style.borderLeftColor='#D4A574'; this.style.color='#D4A574'" onmouseout="this.style.background='transparent'; this.style.borderLeftColor='transparent'; this.style.color='#ffffff'">Inicio</a>
+            <a href="index.html#nosotros" class="mobile-menu-link py-4 px-4 rounded-lg transition-all" style="border-left: 3px solid transparent;" onmouseover="this.style.background='rgba(212, 165, 116, 0.1)'; this.style.borderLeftColor='#D4A574'; this.style.color='#D4A574'" onmouseout="this.style.background='transparent'; this.style.borderLeftColor='transparent'; this.style.color='#ffffff'">Nosotros</a>
+            <a href="index.html#servicios" class="mobile-menu-link py-4 px-4 rounded-lg transition-all" style="border-left: 3px solid transparent;" onmouseover="this.style.background='rgba(212, 165, 116, 0.1)'; this.style.borderLeftColor='#D4A574'; this.style.color='#D4A574'" onmouseout="this.style.background='transparent'; this.style.borderLeftColor='transparent'; this.style.color='#ffffff'">Servicios</a>
+            <a href="index.html#productos" class="mobile-menu-link py-4 px-4 rounded-lg transition-all" style="border-left: 3px solid transparent;" onmouseover="this.style.background='rgba(212, 165, 116, 0.1)'; this.style.borderLeftColor='#D4A574'; this.style.color='#D4A574'" onmouseout="this.style.background='transparent'; this.style.borderLeftColor='transparent'; this.style.color='#ffffff'">Productos</a>
+            <a href="donlucas.html" class="mobile-menu-link py-4 px-4 rounded-lg font-bold transition-all" style="background: linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(212, 165, 116, 0.1)); border: 1px solid rgba(212, 165, 116, 0.3); border-left: 3px solid #D4A574; color: #D4A574; box-shadow: 0 4px 15px rgba(212, 165, 116, 0.2);">Don Lucas</a>
+            <a href="index.html#contacto" class="mobile-menu-link py-4 px-4 rounded-lg transition-all" style="border-left: 3px solid transparent;" onmouseover="this.style.background='rgba(212, 165, 116, 0.1)'; this.style.borderLeftColor='#D4A574'; this.style.color='#D4A574'" onmouseout="this.style.background='transparent'; this.style.borderLeftColor='transparent'; this.style.color='#ffffff'">Contacto</a>
+        </nav>
+
+        <!-- Decorative gradient at bottom -->
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(to top, rgba(212, 165, 116, 0.1), transparent); pointer-events: none;"></div>
+    </div>
+</div>

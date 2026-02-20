@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agropecuaria Villa Dolores S.A. | Dinamismo y Calidad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter font - mejor para UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- CSS Compartido -->
+    <link rel="stylesheet" href="assets/css/shared.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- AOS Library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        /* NOTA: Variables y estilos base ahora en shared.css */
+
+        /* === PALETA DE MARCA: sobreescribe shared.css solo para index.html === */
+        :root {
+            --primary:       #4153A0;
+            --primary-light: #5a70c4;
+            --primary-dark:  #2f3d7a;
+            --accent:        #E30613;
+            --accent-dark:   #b80010;
+        }
+
+        /* Asegura que bg-accent use la variable (Tailwind CDN no conoce el nombre) */
+        .bg-accent { background-color: var(--accent) !important; }
+
+        /* Estilos específicos de index.html */
+
+        /* Hero Parallax & Animations */
+        .hero-video-container {
+            perspective: 1000px;
+        }
+        
+        .parallax-bg {
+            transform: scale(1.1);
+            transition: transform 0.1s ease-out;
+            /* will-change activado solo durante scroll - ver JS */
+        }
+
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+        }
+
+        /* Nav Animations */
+        #navbar {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            color: #1F2937;
+        }
+        .nav-scrolled .logo-text { color: var(--primary); }
+        .nav-scrolled a { color: #4B5563; }
+        .nav-scrolled a:hover { color: var(--primary); }
+
+        /* Button Styles */
+        .btn-agro {
+            background: var(--accent);
+            color: white;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: 0.02em;
+            border: 3px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        .btn-agro:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        /* Button Glow & Ripple */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 rgba(227, 6, 19, 0);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 30px rgba(227, 6, 19, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        /* Card Hover Effects - Optimizado */
+        .lift-card {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1), box-shadow 0.3s ease;
+            will-change: transform; /* Seguro para cards estáticas */
+        }
+        .lift-card:hover {
+            transform: translateY(-8px); /* Reducido de -12px */
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+        }
+        .lift-card:hover i {
+            transform: scale(1.1) rotate(5deg); /* Más sutil */
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .lift-card:hover {
+                transform: none;
+            }
+        }
+
+        /* Products Zoom - Optimizado */
+        .product-card {
+            overflow: hidden; /* Previene overflow del zoom */
+        }
+        .product-card img {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover img {
+            transform: scale(1.08); /* Reducido de 1.15 a 1.08 */
+        }
+
+        /* Pulse Animation */
+        @keyframes subtle-pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pulse-subtle {
+            animation: subtle-pulse 2s infinite ease-in-out;
+        }
+
+        /* Scroll Indicator */
+        .mouse-scroll {
+            width: 24px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 12px;
+            position: relative;
+        }
+        .mouse-scroll::before {
+            content: '';
+            width: 4px;
+            height: 8px;
+            background: white;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 8px;
+            border-radius: 2px;
+            animation: scroll-anim 2s infinite;
+        }
+        @keyframes scroll-anim {
+            0% { top: 8px; opacity: 1; }
+            100% { top: 24px; opacity: 0; }
+        }
+
+        /* Underline Link Animation */
+        .link-underline {
+            position: relative;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .link-underline:hover::after {
+            width: 100%;
+        }
+
+        /* Form Fields */
+        .form-input {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-radius: 0.75rem;
+            color: white;
+        }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.2);
+        }
+
+        /* Fix: group-hover:bg-primary no funciona en Tailwind CDN sin config */
+        .lift-card:hover > div:first-child {
+            background-color: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navbar Component (cargado desde components/navbar.html) -->
+    <div id="navbar-placeholder"></div>
+
+
+    <!-- Section 1: Hero -->
+    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden hero-video-container">
+        <!-- Parallax Background -->
+        <div class="absolute inset-0 z-0">
+            <img id="hero-img" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                 alt="Campo Argentino" class="w-full h-full object-cover parallax-bg">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    Calidad que crece desde la <span class="text-accent">tierra argentina</span>
+                </h1>
+                <p class="text-lg md:text-2xl text-gray-200 mb-10 font-light max-w-2xl mx-auto">
+                    Producción y exportación de productos hortícolas con estándares internacionales.
+                </p>
+                <div class="flex flex-col items-center gap-12">
+                    <a href="#nosotros" class="btn-agro btn-glow px-10 py-4 rounded-full inline-flex items-center gap-3 text-lg font-bold">
+                        Conoce nuestra historia
+                        <i data-lucide="chevron-right" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                    
+                    <!-- Scroll Indicator -->
+                    <div class="mouse-scroll"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Quick Navigation (Staggered) -->
+    <section class="relative z-20 -mt-20 px-4 md:px-12 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Nav Cards -->
+            <a href="#nosotros" data-aos="zoom-in-up" data-aos-delay="0" class="bg-white p-8 rounded-2xl lift-card flex flex-col items-center text-center group border border-gray-100">
+                <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                    <i data-lucide="users" class="w-8 h-8 transition-all"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">Nosotros</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Conoce nuestras raíces y trayectoria familiar.</p>
+            </a>
+            
+            <a href="#servicios" data-aos="zoom-in-up" data-aos-delay="100" class="bg-white p-8 rounded-2xl lift-card flex flex-col items-center text-center group border border-gray-100">
+                <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                    <i data-lucide="truck" class="w-8 h-8 transition-all"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">Servicios</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Logística de punta y cadena de frío garantizada.</p>
+            </a>
+
+            <a href="#productos" data-aos="zoom-in-up" data-aos-delay="200" class="bg-white p-8 rounded-2xl lift-card flex flex-col items-center text-center group border border-gray-100">
+                <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                    <i data-lucide="sprout" class="w-8 h-8 transition-all"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">Productos</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Variedades certificadas para consumo e industria.</p>
+            </a>
+
+            <a href="#contacto" data-aos="zoom-in-up" data-aos-delay="300" class="bg-white p-8 rounded-2xl lift-card flex flex-col items-center text-center group border border-gray-100">
+                <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                    <i data-lucide="map-pin" class="w-8 h-8 transition-all"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-2">Contacto</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Estamos presentes en los puntos clave del país.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Section 3: Nosotros (Animations & Counter) -->
+    <section id="nosotros" class="py-32 px-4 md:px-12 max-w-7xl mx-auto overflow-hidden">
+        <div class="grid md:grid-cols-2 gap-20 items-center mb-32">
+            <div class="relative group" data-aos="fade-right">
+                <div class="absolute -inset-4 bg-accent/20 rounded-2xl transform -rotate-3 transition-transform group-hover:rotate-0 duration-500"></div>
+                <img src="assets/images/plantaavd-opt.jpg"
+                     alt="Planta Villa Dolores" class="relative rounded-2xl shadow-2xl z-10 w-full h-[500px] object-cover">
+            </div>
+            <div data-aos="fade-left">
+                <span class="text-accent font-bold tracking-widest uppercase text-sm inline-block mb-3">Producción Sustentable</span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 text-primary">¿Quiénes Somos?</h2>
+                <div class="space-y-6 text-gray-600 text-lg leading-relaxed">
+                    <p>
+                        <strong>Agropecuaria Villa Dolores S.A.</strong> es una empresa familiar dedicada a la producción, comercialización y exportación de productos hortícolas. 
+                    </p>
+                    <p>
+                        Nuestra especialidad es la papa, cubriendo desde el mercado fresco hasta la industria del snack y el puré, satisfaciendo los paladares más exigentes con variedades como <strong>Spunta, Innovator y Atlantic</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision with animated map -->
+        <div class="bg-primary rounded-[3rem] p-10 md:p-20 text-white relative overflow-hidden shadow-2xl" data-aos="zoom-out">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+            <div class="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8" data-aos="fade-up">Nuestra Integración Vertical</h2>
+                    <p class="text-gray-200 mb-10 text-lg leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                        Hace más de una década consolidamos una integración que nos otorga independencia: transporte propio, producción de semillas de élite y servicios frigoríficos de vanguardia.
+                    </p>
+                    
+                    <!-- Locations Staggered -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10" data-aos="fade-up" data-aos-delay="200">
+                            <i data-lucide="map-pin" class="text-accent"></i>
+                            <span class="font-semibold">Villa Dolores (CBA)</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10" data-aos="fade-up" data-aos-delay="300">
+                            <i data-lucide="map-pin" class="text-accent"></i>
+                            <span class="font-semibold">Concarán (SL)</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10" data-aos="fade-up" data-aos-delay="400">
+                            <i data-lucide="map-pin" class="text-accent"></i>
+                            <span class="font-semibold">Azul (BA)</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10" data-aos="fade-up" data-aos-delay="500">
+                            <i data-lucide="map-pin" class="text-accent"></i>
+                            <span class="font-semibold">Tres Arroyos (BA)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative h-[400px] bg-black/20 rounded-3xl p-8 flex flex-col justify-center items-center group" data-aos="flip-right">
+                    <div class="w-full h-full border border-white/10 rounded-2xl flex items-center justify-center relative">
+                        <!-- Animated Map Pins -->
+                        <div class="absolute top-1/4 left-1/3 animate-bounce-subtle" style="animation-delay: 0.1s">
+                            <i data-lucide="map-pin" class="text-accent fill-accent w-8 h-8"></i>
+                        </div>
+                        <div class="absolute top-1/2 left-1/4 animate-bounce-subtle" style="animation-delay: 0.3s">
+                            <i data-lucide="map-pin" class="text-accent fill-accent w-8 h-8"></i>
+                        </div>
+                        <div class="absolute bottom-1/4 right-1/3 animate-bounce-subtle" style="animation-delay: 0.5s">
+                            <i data-lucide="map-pin" class="text-accent fill-accent w-8 h-8"></i>
+                        </div>
+                        <div class="text-center">
+                            <i data-lucide="globe" class="w-24 h-24 text-white/10 mb-4 animate-spin-slow"></i>
+                            <p class="text-accent font-bold tracking-widest uppercase">Operación Nacional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Servicios (Reveal & Count-Up) -->
+    <section id="servicios" class="py-32 bg-gray-100 overflow-hidden">
+        <div class="px-4 md:px-12 max-w-7xl mx-auto">
+            <div class="text-center mb-24" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Servicios de Excelencia</h2>
+                <div class="w-24 h-1.5 bg-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Logística -->
+                <div class="bg-white rounded-[2rem] overflow-hidden shadow-xl flex flex-col group lift-card" data-aos="fade-up-right">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="assets/images/logistica-opt.jpg"
+                             alt="Logística" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="p-10">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="p-4 bg-primary/10 rounded-2xl text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                                <i data-lucide="truck" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold">Logística Inteligente</h3>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-8">
+                            Garantizamos la puntualidad mediante nuestra flota pesada de última generación, monitoreada 24/7.
+                        </p>
+                        <div class="flex items-center gap-3 text-primary font-bold text-xl p-4 bg-primary/5 rounded-xl">
+                            <i data-lucide="star" class="text-accent fill-accent"></i>
+                            <span>6 unidades de alta gama Scania</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frigorífico con Count-up -->
+                <div class="bg-white rounded-[2rem] overflow-hidden shadow-xl flex flex-col group lift-card" data-aos="fade-up-left">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                             alt="Frio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="p-10">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="p-4 bg-primary/10 rounded-2xl text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                                <i data-lucide="snowflake" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold">Frigorífico San Vicente</h3>
+                        </div>
+                        <div class="grid grid-cols-3 gap-6 mb-10">
+                            <div class="text-center p-6 bg-gray-50 rounded-2xl border border-gray-100 transition-colors group-hover:border-accent">
+                                <span class="block text-3xl font-bold text-primary counter" data-target="8">0</span>
+                                <span class="text-xs uppercase font-bold text-gray-400">Cámaras</span>
+                            </div>
+                            <div class="text-center p-6 bg-gray-50 rounded-2xl border border-gray-100 transition-colors group-hover:border-accent">
+                                <span class="block text-3xl font-bold text-primary counter" data-target="4000">0</span>
+                                <span class="text-xs uppercase font-bold text-gray-400">m² Área</span>
+                            </div>
+                            <div class="text-center p-6 bg-gray-50 rounded-2xl border border-gray-100 transition-colors group-hover:border-accent">
+                                <span class="block text-3xl font-bold text-primary counter" data-target="7.5">0</span>
+                                <span class="text-xs uppercase font-bold text-gray-400">M kg Cap.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-500 text-sm">
+                            <i data-lucide="shield-check" class="text-primary"></i>
+                            <span>Seguro total de mercadería y Generador 400kva Scania.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Productos (Zoom & Staggered Grid) -->
+    <section id="productos" class="py-32 px-4 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center mb-24" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Catálogo de Productos</h2>
+            <p class="text-gray-500 text-lg">Excelencia genética y calidad en cada cosecha.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            <!-- Semillas -->
+            <div class="product-card group bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm" data-aos="fade-up" data-aos-delay="0">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                         alt="Semillas" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-secondary text-white px-4 py-1 rounded-full text-xs font-bold animate-pulse-subtle">
+                        EN DESARROLLO
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h4 class="font-bold text-2xl mb-4 group-hover:text-primary transition-colors">Semillas de Élite</h4>
+                    <p class="text-gray-500 leading-relaxed mb-6">
+                        Certificadas bajo los más altos estándares para garantizar rendimientos óptimos en climas variados.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Don Lucas (UPDATED LINK) -->
+            <div class="product-card group bg-white rounded-3xl overflow-hidden border-2 border-primary shadow-xl scale-105 z-10" data-aos="fade-up" data-aos-delay="150">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="assets/images/bolsadonlucas.jpg"
+                         alt="Consumo" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-8">
+                        <span class="text-accent font-bold uppercase tracking-tighter text-sm mb-1">Nuestra Marca</span>
+                        <h3 class="text-white text-3xl font-bold">Don Lucas</h3>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        Papa seleccionada a mano para el consumo familiar. Frescura inigualable de la tierra a su mesa.
+                    </p>
+                    <a href="donlucas.html" class="w-full py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary-light transition-all flex items-center justify-center gap-2 group/btn">
+                        Ver Detalles Don Lucas
+                        <i data-lucide="external-link" class="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Industria -->
+            <div class="product-card group bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm" data-aos="fade-up" data-aos-delay="300">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1590165482129-1b8b27698780?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                         alt="Industria" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg" style="background-color: var(--primary);">
+                        STOCK 365 DÍAS
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h4 class="font-bold text-2xl mb-4 group-hover:text-primary transition-colors">Papa Industrial</h4>
+                    <p class="text-gray-500 leading-relaxed mb-6">
+                        Abastecimiento ininterrumpido de variedades Innovator y Atlantic para procesadoras de primer nivel.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Contacto (Interactive Form) -->
+    <section id="contacto" class="py-32 bg-primary text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full fill-white">
+                <path d="M0 100 L100 0 L100 100 Z"></path>
+            </svg>
+        </div>
+
+        <div class="px-4 md:px-12 max-w-7xl mx-auto relative z-10">
+            <div class="grid lg:grid-cols-2 gap-20">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-10">Conectemos</h2>
+                    <p class="text-gray-300 mb-12 text-lg">Nuestro equipo técnico y comercial está listo para asesorarte en tus necesidades de producción y logística.</p>
+                    
+                    <form action="https://formsubmit.co/agropecuariavilladoloressa@hotmail.com" method="POST" class="space-y-6">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="Nueva consulta desde Agropecuaria Villa Dolores">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+
+                        <div class="group">
+                            <input type="text" name="nombre" placeholder="Nombre Completo" required
+                                   class="form-input w-full p-4 bg-transparent focus:outline-none focus:ring-0 ">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="email" name="email" placeholder="Correo Electrónico" required
+                                   class="form-input w-full p-4 bg-transparent focus:outline-none focus:ring-0 ">
+                            <input type="tel" name="telefono" placeholder="Teléfono"
+                                   class="form-input w-full p-4 bg-transparent focus:outline-none focus:ring-0 ">
+                        </div>
+                        <textarea rows="5" name="mensaje" placeholder="Tu mensaje..." required
+                                  class="form-input w-full p-4 bg-transparent focus:outline-none focus:ring-0 "></textarea>
+
+                        <button type="submit" class="group relative px-12 py-5 bg-accent text-white font-bold rounded-2xl overflow-hidden transition-all hover:scale-[1.02] active:scale-95 shadow-lg">
+                            <span class="relative z-10 transition-colors duration-300 group-hover:text-gray-900">Enviar Consulta</span>
+                            <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-all duration-300"></div>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="flex flex-col justify-between" data-aos="fade-left">
+                    <div class="bg-white/5 p-10 rounded-[2rem] border border-white/10 backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-8 text-accent">Contacto Directo</h3>
+                        <div class="space-y-8">
+                            <a href="https://www.google.com/maps/place/Agropecuaria+Villa+Dolores/data=!4m2!3m1!1s0x0:0xc5ff88f0f26939a6?sa=X&ved=1t:2428&ictx=111" target="_blank" class="flex items-start gap-6 group cursor-pointer hover:translate-x-2 transition-transform">
+                                <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
+                                    <i data-lucide="map"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">Oficina Central</p>
+                                    <p class="text-gray-400">Villa Dolores, CBA, Argentina</p>
+                                </div>
+                            </a>
+                            <div class="flex items-start gap-6 group cursor-pointer">
+                                <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
+                                    <i data-lucide="mail"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">Email Corporativo</p>
+                                    <p class="text-gray-400">agropecuariavilladoloressa@hotmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Map Placeholder Interactive -->
+                        <a href="https://www.google.com/maps/place/Agropecuaria+Villa+Dolores/data=!4m2!3m1!1s0x0:0xc5ff88f0f26939a6?sa=X&ved=1t:2428&ictx=111" target="_blank" class="mt-12 rounded-3xl overflow-hidden h-64 relative group border border-white/10 block cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                 alt="Mapa" class="w-full h-full object-cover grayscale opacity-30 transition-all group-hover:opacity-60">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="px-6 py-3 bg-white text-primary font-bold rounded-xl shadow-2xl flex items-center gap-2 group-hover:scale-105 transition-transform">
+                                    <i data-lucide="map-pin"></i>
+                                    Explorar ubicaciones
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component (cargado desde components/footer.html) -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // NOTA: Mobile Menu y Navbar ahora manejados por shared-components.js
+
+        // Hero Parallax Effect - Optimizado con RAF, throttle y will-change dinámico
+        const heroImg = document.getElementById('hero-img');
+        if(heroImg && window.innerWidth > 768) { // Solo en desktop
+            let ticking = false;
+            let scrollTimeout;
+
+            const updateParallax = () => {
+                const scroll = window.pageYOffset;
+                heroImg.style.transform = `scale(1.1) translateY(${scroll * 0.3}px)`;
+                ticking = false;
+            };
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    heroImg.style.willChange = 'transform'; // Activar durante scroll
+                    window.requestAnimationFrame(updateParallax);
+                    ticking = true;
+
+                    // Desactivar will-change después de terminar scroll
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        heroImg.style.willChange = 'auto';
+                    }, 150);
+                }
+            }, { passive: true });
+        }
+
+        // Counter Animation - Optimizado con RAF
+        const counters = document.querySelectorAll('.counter');
+
+        const animateCounter = (el) => {
+            const target = +el.getAttribute('data-target');
+            const duration = 2000; // 2 segundos
+            const frameDuration = 1000 / 60; // 60 FPS
+            const totalFrames = Math.round(duration / frameDuration);
+            let frame = 0;
+
+            const counter = setInterval(() => {
+                frame++;
+                const progress = frame / totalFrames;
+                const currentCount = Math.round(progress * target);
+
+                if (el.getAttribute('data-target').includes('.')) {
+                    el.innerText = (progress * target).toFixed(1);
+                } else {
+                    el.innerText = currentCount;
+                }
+
+                if (frame === totalFrames) {
+                    clearInterval(counter);
+                    el.innerText = target;
+                }
+            }, frameDuration);
+        };
+
+        // Intersection Observer for counters
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(c => observer.observe(c));
+
+        // Smooth Scroll handling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Script para cargar componentes compartidos (navbar y footer) -->
+    <script src="assets/js/shared-components.js"></script>
+</body>
+</html>

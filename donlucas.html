@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don Lucas | Papas Premium - Agropecuaria Villa Dolores S.A.</title>
+    <meta name="description" content="Don Lucas - Papas premium de Agropecuaria Villa Dolores S.A. Variedades seleccionadas con información nutricional completa.">
+    <meta name="keywords" content="don lucas, papas premium, papas de calidad, spunta, innovator, atlantic, variedades rojas, información nutricional papa">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Compartido -->
+    <link rel="stylesheet" href="assets/css/shared.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* NOTA: Estilos base y compartidos ahora en shared.css */
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            /* Paleta corporativa Don Lucas */
+            --green:         #00A859;   /* primary brand — naturaleza, calidad */
+            --green-dark:    #007a40;
+            --green-soft:    rgba(0, 168, 89, 0.10);
+            --red:           #ED3237;   /* acento secundario — badges, hover */
+            --red-soft:      rgba(237, 50, 55, 0.10);
+            --yellow:        #FFF212;   /* micro-acento — solo sobre oscuro */
+
+            /* Aliases para compatibilidad con resto del CSS */
+            --primary:       #00A859;
+            --primary-light: #00c46a;
+            --primary-dark:  #007a40;
+            --accent:        #00A859;
+            --secondary:     #ED3237;
+            --red-accent:    #ED3237;
+
+            /* Base neutra */
+            --light-bg:  #F4F4F4;
+            --dark:      #0D0D0D;
+            --gray-900:  #111111;
+            --gray-700:  #374151;
+            --gray-500:  #6B7280;
+            --gray-300:  #D1D5DB;
+            --gray-100:  #F4F4F4;
+            --white:     #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--gray-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        h4 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-logo {
+            max-width: 1200px;
+            width: 90%;
+            height: auto;
+            margin-bottom: 3rem;
+            filter: drop-shadow(0 30px 80px rgba(0, 168, 89, 0.25))
+                    drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.25rem, 2.5vw, 2rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 0%, #00A859 50%, #ffffff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .hero-tagline::before,
+        .hero-tagline::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00A859, transparent);
+        }
+
+        .hero-tagline::before {
+            top: 0;
+        }
+
+        .hero-tagline::after {
+            bottom: 0;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-alt {
+            background: var(--gray-100);
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: clamp(2rem, 5vw, 3rem); /* Tipografía fluida */
+            font-weight: 800;
+            font-family: 'Montserrat', 'Inter', sans-serif; /* Montserrat en lugar de Poppins */
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-title p {
+            font-size: 1.125rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== VARIETIES SHOWCASE - Editorial Layout ===== */
+        .varieties-showcase {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .variety-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 520px;
+            overflow: hidden;
+        }
+
+        .variety-row:nth-child(even) .variety-img-wrapper {
+            order: 2;
+        }
+        .variety-row:nth-child(even) .variety-info {
+            order: 1;
+        }
+
+        .variety-img-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .variety-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .variety-row:hover .variety-img-wrapper img {
+            transform: scale(1.06);
+        }
+
+        .variety-info {
+            background: #0D0D0D;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 4.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .variety-info::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 80% 50%, rgba(0, 168, 89, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .variety-number {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            font-size: 7rem;
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(0, 168, 89, 0.08);
+            letter-spacing: -0.05em;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .variety-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #00A859;
+            margin-bottom: 1.25rem;
+        }
+
+        .variety-tag::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background: #00A859;
+        }
+
+        .variety-info h4 {
+            font-size: clamp(1.8rem, 3vw, 2.75rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .variety-divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #00A859, transparent);
+            margin-bottom: 1.5rem;
+        }
+
+        .variety-info p {
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, 0.65);
+            max-width: 440px;
+        }
+
+        /* Stats badge */
+        .variety-stats {
+            display: inline-flex;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .variety-stat {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: rgba(0, 168, 89, 0.95);
+            background: rgba(0, 168, 89, 0.10);
+            border: 1px solid rgba(0, 168, 89, 0.25);
+            padding: 0.35rem 0.85rem;
+            border-radius: 2rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .variety-row {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .variety-img-wrapper {
+                height: 260px;
+            }
+
+            .variety-row:nth-child(even) .variety-img-wrapper {
+                order: 0;
+            }
+            .variety-row:nth-child(even) .variety-info {
+                order: 1;
+            }
+
+            .variety-info {
+                padding: 2rem 1.75rem;
+            }
+
+            .variety-number {
+                font-size: 5rem;
+                top: 1rem;
+                right: 1.5rem;
+            }
+
+            .variety-info h4 {
+                font-size: 1.6rem;
+            }
+
+            .variety-info p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ===== PRODUCTS GRID ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3px;
+            background: #111;
+        }
+
+        .product-card {
+            position: relative;
+            min-height: 480px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        /* Gradiente base — solo desde abajo para leer el nombre */
+        .product-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                rgba(0,0,0,0.82) 0%,
+                rgba(0,0,0,0.25) 45%,
+                transparent 70%
+            );
+            z-index: 1;
+        }
+
+        /* Overlay oscuro que aparece en hover */
+        .product-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .product-card:hover::after {
+            opacity: 1;
+        }
+
+        .product-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-bg {
+            transform: scale(1.08);
+        }
+
+        .product-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            padding: 1.75rem;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-content {
+            transform: translateY(-10px);
+        }
+
+        .product-card h4 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.01em;
+            margin-bottom: 0;
+            transition: margin-bottom 0.35s ease;
+        }
+
+        .product-card:hover h4 {
+            margin-bottom: 0.6rem;
+        }
+
+        /* Línea verde que aparece en hover */
+        .product-title-line {
+            width: 0;
+            height: 2px;
+            background: #00A859;
+            margin-bottom: 0;
+            transition: width 0.35s ease 0.08s, margin-bottom 0.35s ease;
+        }
+
+        .product-card:hover .product-title-line {
+            width: 32px;
+            margin-bottom: 0.6rem;
+        }
+
+        .product-card p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.78);
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.3s ease 0.1s;
+        }
+
+        .product-card:hover p {
+            max-height: 80px;
+            opacity: 1;
+        }
+
+        /* Estado activo por scroll (IntersectionObserver) */
+        .product-card.in-view::after {
+            opacity: 1;
+        }
+
+        .product-card.in-view .product-bg {
+            transform: scale(1.08);
+        }
+
+        .product-card.in-view .product-content {
+            transform: translateY(-10px);
+        }
+
+        .product-card.in-view h4 {
+            margin-bottom: 0.6rem;
+        }
+
+        .product-card.in-view .product-title-line {
+            width: 32px;
+            margin-bottom: 0.6rem;
+        }
+
+        .product-card.in-view p {
+            max-height: 80px;
+            opacity: 1;
+        }
+
+        /* ===== SPLIT SECTION ===== */
+        .split-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            align-items: start;
+        }
+
+        .nutrition-card,
+        .history-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-200);
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== NUTRITION TABLE ===== */
+        .nutrition-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .nutrition-table thead th {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nutrition-table tbody tr {
+            border-bottom: 1px solid var(--gray-200);
+            transition: background 0.2s ease;
+        }
+
+        .nutrition-table tbody tr:hover {
+            background: var(--gray-100);
+        }
+
+        .nutrition-table tbody td {
+            padding: 14px 16px;
+        }
+
+        .nutrition-table tbody td:first-child {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .nutrition-table tbody td:last-child {
+            font-weight: 700;
+            color: var(--primary);
+            text-align: right;
+        }
+
+        .nutrition-note {
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* ===== HISTORY CARD ===== */
+        .history-card {
+            background: linear-gradient(135deg, rgba(0,0,0,0.82), rgba(0,80,40,0.65)), url('assets/images/vistadearriba-opt.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efecto parallax sutil */
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .history-card {
+                background-attachment: scroll; /* Sin parallax en mobile */
+            }
+        }
+
+        .history-card .card-title {
+            color: var(--white);
+            border-left: 4px solid #00A859;
+            padding-left: 20px;
+        }
+
+        .history-section-item {
+            margin-bottom: 2rem;
+        }
+
+        .history-section-item h4 {
+            font-size: 1.25rem;
+            color: #FFF212;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .history-section-item p {
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .history-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #FFF212;  /* amarillo — sobre fondo oscuro: contraste 16:1 */
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .faq-category {
+            margin-bottom: 2rem;
+        }
+
+        .faq-category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0D0D0D;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #ED3237;
+        }
+
+        .faq-item {
+            margin-bottom: 0.75rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-question {
+            padding: 18px 50px 18px 20px;
+            font-weight: 600;
+            color: var(--gray-900);
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.75rem;
+            font-weight: 300;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question {
+            transition: background-color 0.2s ease, color 0.2s ease; /* Transición suave agregada */
+        }
+
+        .faq-item.active .faq-question {
+            background: #00A859;
+            color: var(--white);
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '−';
+            color: #FFF212;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px; /* Aumentado para contenido largo */
+            overflow-y: auto; /* Scroll si excede */
+            padding: 1.25rem; /* 20px */
+        }
+
+        .faq-answer p {
+            color: var(--gray-700);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== NAVBAR ===== */
+        /* Nav Animations */
+        #navbar {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding-top: 0.75rem !important;
+            padding-bottom: 0.75rem !important;
+            color: #1F2937 !important;
+        }
+        .nav-scrolled .logo-text { color: var(--primary) !important; }
+        .nav-scrolled a { color: #4B5563 !important; }
+        .nav-scrolled a:hover { color: var(--primary) !important; }
+
+        /* Underline Link Animation */
+        .link-underline {
+            position: relative;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .link-underline:hover::after {
+            width: 100%;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark);
+            color: var(--gray-300);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .split-section,
+            .faq-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .history-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .navbar-menu {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                margin-bottom: 40px;
+            }
+
+            .variety-card,
+            .product-card {
+                min-height: 350px;
+                padding: 30px 20px;
+            }
+
+            .product-card h4 {
+                font-size: 1.75rem;
+            }
+
+            .nutrition-card,
+            .history-card {
+                padding: 25px 20px;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .history-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .nutrition-table {
+                font-size: 0.875rem;
+            }
+
+            .nutrition-table th,
+            .nutrition-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .faq-item h4 {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .hero-content p {
+                font-size: 1rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .variety-card,
+            .product-card {
+                min-height: 300px;
+                padding: 25px 15px;
+            }
+
+            .variety-card h4,
+            .product-card h4 {
+                font-size: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.75rem;
+            }
+
+            .nutrition-table {
+                font-size: 0.75rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem !important;
+            }
+
+            .container {
+                padding: 0 0.75rem;
+            }
+        }
+
+        /* ===== MOBILE FIXES (NAVBAR Y HERO) ===== */
+        @media (max-width: 768px) {
+            /* Navbar mobile - logo más pequeño y mejor centrado */
+            #navbar {
+                padding: 1rem 1rem !important;
+            }
+
+            #navbar img {
+                height: 3rem !important; /* Logo más pequeño en mobile */
+            }
+
+            /* Menú hamburguesa movido un poco a la izquierda */
+            #mobile-menu-btn {
+                margin-right: 0.5rem;
+            }
+
+            /* Hero mobile - mejor centrado */
+            .hero {
+                height: 100vh;
+                min-height: 500px;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .hero-logo {
+                max-width: 85%;
+                width: 85%;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            /* Extra small mobile */
+            #navbar img {
+                height: 2.5rem !important;
+            }
+
+            .hero-logo {
+                max-width: 90%;
+                width: 90%;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Component (cargado desde components/navbar.html) -->
+    <div id="navbar-placeholder"></div>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="assets/videos/fondodonlucas-opt.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <img src="assets/icons/donlucas4.png" alt="Don Lucas - Papas Premium" class="hero-logo">
+            <div style="position: relative; display: inline-block;">
+                <p class="hero-tagline">Calidad Premium en cada variedad</p>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120%; height: 120%; background: radial-gradient(circle, rgba(0,168,89,0.1) 0%, transparent 70%); pointer-events: none; animation: pulse 4s ease-in-out infinite;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Varieties Section -->
+    <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Variedades que Comercializamos</h2>
+            </div>
+        </div>
+
+        <div class="varieties-showcase">
+
+            <!-- 01 · Sagitta -->
+            <div class="variety-row">
+                <div class="variety-img-wrapper">
+                    <img src="assets/images/sagitta.jpg" alt="Papa Sagitta">
+                </div>
+                <div class="variety-info">
+                    <span class="variety-number">01</span>
+                    <span class="variety-tag">Variedad Premium</span>
+                    <h4>Sagitta</h4>
+                    <div class="variety-divider"></div>
+                    <p>De tamaño ovalada, piel amarilla lisa y pulpa amarillo claro. Muy valorada para fritura (bastones y papas fritas) y mercado fresco por su buen color y resistencia al golpe. Multifuncional con excelente contenido de materia seca.</p>
+                    <div class="variety-stats">
+                        <span class="variety-stat">Materia seca 21,1%</span>
+                        <span class="variety-stat">Almidón 15,2%</span>
+                        <span class="variety-stat">Fritura · Fresco</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 02 · Spunta -->
+            <div class="variety-row">
+                <div class="variety-img-wrapper">
+                    <img src="assets/images/spunta.jpg" alt="Papa Spunta">
+                </div>
+                <div class="variety-info">
+                    <span class="variety-number">02</span>
+                    <span class="variety-tag">Variedad Nacional</span>
+                    <h4>Spunta</h4>
+                    <div class="variety-divider"></div>
+                    <p>Tubérculos grandes con elevada producción y amplia adaptación. Buena resistencia a la sequía y el calor. La variedad más consumida en Argentina para mercado fresco.</p>
+                    <div class="variety-stats">
+                        <span class="variety-stat">Materia seca 19,9%</span>
+                        <span class="variety-stat">Almidón 14%</span>
+                        <span class="variety-stat">Mercado Fresco</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 03 · Innovator -->
+            <div class="variety-row">
+                <div class="variety-img-wrapper">
+                    <img src="assets/images/innovator.jpg" alt="Papa Innovator">
+                </div>
+                <div class="variety-info">
+                    <span class="variety-number">03</span>
+                    <span class="variety-tag">Variedad Industrial</span>
+                    <h4>Innovator</h4>
+                    <div class="variety-divider"></div>
+                    <p>Tubérculos alargados de piel blanca amarilla rugosa y carne color crema. Bajo porcentaje de deformaciones, resistente a enfermedades y golpes. La variedad predilecta para freír.</p>
+                    <div class="variety-stats">
+                        <span class="variety-stat">Materia seca 20,6%</span>
+                        <span class="variety-stat">Almidón 14,8%</span>
+                        <span class="variety-stat">Fritura Industrial</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 04 · Atlantic -->
+            <div class="variety-row">
+                <div class="variety-img-wrapper">
+                    <img src="assets/images/papa3-opt.jpg" alt="Papa Atlantic">
+                </div>
+                <div class="variety-info">
+                    <span class="variety-number">04</span>
+                    <span class="variety-tag">Alta Materia Seca</span>
+                    <h4>Atlantic</h4>
+                    <div class="variety-divider"></div>
+                    <p>Tubérculo redondeado de piel casposa, ojos superficiales y carne blanca. Buen calibre con tamaño medio uniforme. Alta materia seca, ideal para producción de chips.</p>
+                    <div class="variety-stats">
+                        <span class="variety-stat">Materia seca 21,1%</span>
+                        <span class="variety-stat">Almidón 15,2%</span>
+                        <span class="variety-stat">Chips</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 05 · Asterix -->
+            <div class="variety-row">
+                <div class="variety-img-wrapper">
+                    <img src="assets/images/colorada.jpeg" alt="Papa Colorada Asterix">
+                </div>
+                <div class="variety-info">
+                    <span class="variety-number">05</span>
+                    <span class="variety-tag">Variedad Roja</span>
+                    <h4>Asterix</h4>
+                    <div class="variety-divider"></div>
+                    <p>Piel roja y pulpa amarillo claro, con forma ovalada y textura firme. Muy apreciada para papas fritas y también para puré, horneados y hervidos. Versatilidad premium.</p>
+                    <div class="variety-stats">
+                        <span class="variety-stat">Materia seca 23,3%</span>
+                        <span class="variety-stat">Almidón 17,4%</span>
+                        <span class="variety-stat">Multiuso</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Product Presentation Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-title">
+                <h2>Presentación de Nuestros Productos</h2>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            <!-- Etiqueta Negra -->
+            <div class="product-card">
+                <img src="assets/images/sagitta.jpg" alt="Etiqueta Negra" class="product-bg">
+                <div class="product-content">
+                    <h4>Papa Etiqueta Negra</h4>
+                    <div class="product-title-line"></div>
+                    <p>Nuestra línea premium de máxima calidad. Selección rigurosa de cada tubérculo con estándares de excelencia.</p>
+                </div>
+            </div>
+
+            <!-- Cepillada -->
+            <div class="product-card">
+                <img src="assets/images/papa5-opt.jpg" alt="Cepillada" class="product-bg">
+                <div class="product-content">
+                    <h4>Papa Cepillada</h4>
+                    <div class="product-title-line"></div>
+                    <p>Lista para usar, limpia y cuidadosamente seleccionada. Practicidad sin perder calidad ni sabor.</p>
+                </div>
+            </div>
+
+            <!-- De Campo -->
+            <div class="product-card">
+                <img src="assets/images/papa-opt.jpg" alt="De Campo" class="product-bg">
+                <div class="product-content">
+                    <h4>Papa de Campo</h4>
+                    <div class="product-title-line"></div>
+                    <p>Cosecha directa con todo su sabor natural. Auténtico producto de la tierra, fresco y nutritivo.</p>
+                </div>
+            </div>
+
+            <!-- Bolsa Familiar -->
+            <div class="product-card">
+                <img src="assets/images/bolsadonlucas2-opt.jpg" alt="Bolsa Familiar" class="product-bg">
+                <div class="product-content">
+                    <h4>Papa Bolsa Familiar</h4>
+                    <div class="product-title-line"></div>
+                    <p>Presentación práctica para el hogar. Calidad Don Lucas en la medida perfecta para tu familia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition & History Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Información Nutricional e Historia de la Papa</h2>
+            </div>
+
+            <div class="split-section">
+                <!-- Nutrition Table -->
+                <div class="nutrition-card">
+                    <h3 class="card-title">Valores Nutricionales</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--gray-600); font-size: 0.9375rem;">Porción de 100 g de papa cruda fresca con cáscara</p>
+
+                    <table class="nutrition-table">
+                        <thead>
+                            <tr>
+                                <th>Información Nutricional</th>
+                                <th style="text-align: center;">Cantidad</th>
+                                <th style="text-align: right;">%VD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Valor Energético</td>
+                                <td style="text-align: center;">77 kcal</td>
+                                <td>4,4%</td>
+                            </tr>
+                            <tr>
+                                <td>Carbohidratos</td>
+                                <td style="text-align: center;">17 g</td>
+                                <td>6,0%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 2rem;">Fibra</td>
+                                <td style="text-align: center;">2 g</td>
+                                <td>8,0%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 2rem;">Azúcar</td>
+                                <td style="text-align: center;">1,15 g</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Proteínas</td>
+                                <td style="text-align: center;">2,7 g</td>
+                                <td>3,6%</td>
+                            </tr>
+                            <tr>
+                                <td>Grasas Totales</td>
+                                <td style="text-align: center;">0,1 g</td>
+                                <td>0,0%</td>
+                            </tr>
+                            <tr>
+                                <td>Potasio</td>
+                                <td style="text-align: center;">0,493 g</td>
+                                <td>14,1%</td>
+                            </tr>
+                            <tr>
+                                <td>Fósforo</td>
+                                <td style="text-align: center;">0,072 g</td>
+                                <td>7,2%</td>
+                            </tr>
+                            <tr>
+                                <td>Magnesio</td>
+                                <td style="text-align: center;">0,4 g</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Calcio</td>
+                                <td style="text-align: center;">0,036 g</td>
+                                <td>3,6%</td>
+                            </tr>
+                            <tr>
+                                <td>Sodio</td>
+                                <td style="text-align: center;">24 g</td>
+                                <td>1,0%</td>
+                            </tr>
+                            <tr>
+                                <td>Vitamina C</td>
+                                <td style="text-align: center;">0,02 g</td>
+                                <td>3,2%</td>
+                            </tr>
+                            <tr>
+                                <td>Colesterol</td>
+                                <td style="text-align: center;">0 g</td>
+                                <td>0,0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="nutrition-note">
+                        <p><strong>(*)</strong> Valores promedio. Pueden variar según variedad y lugar de cosecha.</p>
+                        <p><strong>(**)</strong> Valor Diario en base a las recomendaciones de una dieta de 2000 kcal. Puede variar según las necesidades individuales.</p>
+                    </div>
+                </div>
+
+                <!-- History -->
+                <div class="history-card">
+                    <h3 class="card-title">Historia de la Papa en el Mundo y Argentina</h3>
+
+                    <div class="history-section-item">
+                        <h4>Orígenes Ancestrales</h4>
+                        <p>La papa tiene sus orígenes en los Andes sudamericanos, donde fue domesticada hace más de 8.000 años por las antiguas civilizaciones indígenas. Desde su introducción a Europa en el siglo XVI, se ha convertido en uno de los alimentos más importantes del mundo, siendo el tercer cultivo alimenticio más producido globalmente.</p>
+                    </div>
+
+                    <div class="history-section-item">
+                        <h4>La Papa en Argentina</h4>
+                        <p>En Argentina, la papa llegó de la mano de los colonizadores españoles y encontró en nuestras tierras un ambiente ideal para su desarrollo. Hoy, Argentina es uno de los principales productores de papa de América Latina, con regiones especializadas que producen durante todo el año, garantizando el abastecimiento continuo al mercado nacional e internacional.</p>
+                    </div>
+
+                    <div class="history-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">3°</div>
+                            <div class="stat-label">Cultivo más producido del mundo</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8000</div>
+                            <div class="stat-label">Años de historia</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">365</div>
+                            <div class="stat-label">Días de producción en Argentina</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-title">
+                <h2>Preguntas Frecuentes Acerca de la Papa</h2>
+            </div>
+
+            <div class="faq-grid">
+                <!-- Column 1 -->
+                <div>
+                    <div class="faq-category">
+                        <h3 class="faq-category-title">Nutrición y Salud</h3>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Es nutritiva?</div>
+                            <div class="faq-answer">
+                                <p>Sí, es rica en vitamina C, B6, hierro, fibra y potasio, con carbohidratos para energía, y no contiene grasas ni gluten.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Es seguro comer la piel?</div>
+                            <div class="faq-answer">
+                                <p>Sí, contiene muchos nutrientes; lávala bien y consúmela con la piel.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Cómo cocinarla saludablemente?</div>
+                            <div class="faq-answer">
+                                <p>Al horno, al vapor o al microondas conservan mejor los nutrientes.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Consumir papas con partes verdes me hará mal?</div>
+                            <div class="faq-answer">
+                                <p>Las partes verdes en las papas son resultado natural de la producción de clorofila en el tubérculo por la exposición a la luz. La clorofila no es tóxica; sin embargo, su presencia indica un aumento en la producción de solanina, lo que puede causar síntomas gastrointestinales (p. ej., náuseas, vómitos y diarrea), pero solo si se consume en grandes cantidades.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Qué es la solanina?</div>
+                            <div class="faq-answer">
+                                <p>Es una sustancia química que se acumula con la luz (haciendo que se ponga verde) y puede ser tóxica en grandes cantidades; corta las partes verdes antes de cocinar.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Deben las personas con diabetes evitar alimentos como las papas?</div>
+                            <div class="faq-answer">
+                                <p>Según la Asociación Americana de la Diabetes (ADA), las verduras ricas en almidón, como las papas, pueden incluirse en la dieta de una persona con diabetes. La cantidad total de carbohidratos consumidos en cualquier comida o refrigerio es lo más importante.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category">
+                        <h3 class="faq-category-title">Origen y Clasificación</h3>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿De dónde viene?</div>
+                            <div class="faq-answer">
+                                <p>De la región andina de Sudamérica, cultivada por los Incas hace miles de años.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Es fruta o verdura?</div>
+                            <div class="faq-answer">
+                                <p>Botánicamente es un tubérculo (tallo subterráneo), no una raíz; culinariamente se trata como verdura.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <div class="faq-category">
+                        <h3 class="faq-category-title">Almacenamiento y Preparación</h3>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Cómo se almacena?</div>
+                            <div class="faq-answer">
+                                <p>En un lugar fresco, oscuro y bien ventilado, protegida de la luz.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Por qué se brotan?</div>
+                            <div class="faq-answer">
+                                <p>Los brotes son el inicio de una nueva planta; córtalos antes de consumir.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Se deben cortar antes de hervir?</div>
+                            <div class="faq-answer">
+                                <p>Cortarlas ayuda a eliminar almidón para que no queden gomosas, pero no las hagas demasiado pequeñas para que no absorban demasiada agua.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Debo mojar las papas en agua fría antes de cocinarlas?</div>
+                            <div class="faq-answer">
+                                <p>No es obligación, pero, mojar las papas en agua ayuda a eliminar el exceso de almidón. Se usa agua fría porque el agua caliente reaccionaría con el almidón, activándolo, lo que dificultaría separarlo de las papas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-category">
+                        <h3 class="faq-category-title">Preguntas Generales</h3>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Una papa nace de otra papa?</div>
+                            <div class="faq-answer">
+                                <p>La papa se propaga vegetativamente, lo que significa que se puede sembrar una nueva planta a partir de otro tubérculo, al cual denominamos "semilla". Este tubérculo es producido cuidadosamente, en lugares diferenciados, para que mantenga los valores de inocuidad para que la futura papa mantenga una calidad alta.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">¿Por qué existe la papa negra y la papa blanca? ¿Son variedades?</div>
+                            <div class="faq-answer">
+                                <p>NO son distintas variedades de papa. La papa negra crece en tierras húmedas y ricas en materia orgánica (como en Buenos Aires) y viene con tierra o piel más oscura, mientras que la papa blanca proviene de suelos arenosos (Córdoba, San Luis, Mendoza) y se cosecha más limpia, resultando en piel clara. Aunque nutricionalmente son similares, en la papa blanca su pulpa es más blanda y absorbe bien la humedad, lo que la convierte en la favorita para preparaciones suaves y cremosas. La papa negra, en cambio, tiene la piel más gruesa y oscura, y una textura firme que resiste mejor la cocción. Por eso es la preferida en platos donde la papa necesita mantener su forma.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component (cargado desde components/footer.html) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // NOTA: Mobile Menu y Navbar ahora manejados por shared-components.js
+
+        // FAQ Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+
+                question.addEventListener('click', function() {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+
+        // IntersectionObserver: revelar texto de product-cards al scrollear
+        const productCards = document.querySelectorAll('.product-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                } else {
+                    entry.target.classList.remove('in-view');
+                }
+            });
+        }, { threshold: 0.5 });
+        productCards.forEach(card => cardObserver.observe(card));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+    </script>
+
+    <!-- Script para cargar componentes compartidos (navbar y footer) -->
+    <script src="assets/js/shared-components.js"></script>
+</body>
+</html>
